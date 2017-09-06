@@ -330,6 +330,13 @@ public class AnalysisParserTest {
     @Test
     public void testParseAnalysisStep_PhenixPrioritiser() {
         Analysis analysis = instance.parseAnalysis(addStepToAnalysis("phenixPrioritiser: {}"));
+        analysisSteps.add(priorityFactory.makePhenixPrioritiser());
+        assertThat(analysis.getAnalysisSteps(), equalTo(analysisSteps));
+    }
+
+    @Test
+    public void testParseAnalysisStep_LegacyPhenixPrioritiser() {
+        Analysis analysis = instance.parseAnalysis(addStepToAnalysis("legacyPhenixPrioritiser: {}"));
         analysisSteps.add(priorityFactory.makeLegacyPhenixPrioritiser());
         assertThat(analysis.getAnalysisSteps(), equalTo(analysisSteps));
     }

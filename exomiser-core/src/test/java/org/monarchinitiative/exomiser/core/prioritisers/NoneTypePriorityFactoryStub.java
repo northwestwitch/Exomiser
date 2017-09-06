@@ -51,6 +51,11 @@ public class NoneTypePriorityFactoryStub implements PriorityFactory {
     }
 
     @Override
+    public PhenixPriority makePhenixPrioritiser() {
+        return new PhenixPriority(true);
+    }
+
+    @Override
     public LegacyPhenixPriority makeLegacyPhenixPrioritiser() {
         return new LegacyPhenixPriority(true);
     }

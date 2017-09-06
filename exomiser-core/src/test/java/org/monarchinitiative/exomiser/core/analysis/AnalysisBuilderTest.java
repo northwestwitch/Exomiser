@@ -369,19 +369,38 @@ public class AnalysisBuilderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddPhenixPrioritiserThrowsExceptionWhenNoHpoIdsDefined() {
-        Prioritiser prioritiser = priorityFactory.makeLegacyPhenixPrioritiser();
+        Prioritiser prioritiser = priorityFactory.makePhenixPrioritiser();
 
         analysisBuilder.addPhenixPrioritiser();
 
         assertThat(analysisSteps(), equalTo(singletonList(prioritiser)));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddLegacyPhenixPrioritiserThrowsExceptionWhenNoHpoIdsDefined() {
+        Prioritiser prioritiser = priorityFactory.makeLegacyPhenixPrioritiser();
+
+        analysisBuilder.addLegacyPhenixPrioritiser();
+
+        assertThat(analysisSteps(), equalTo(singletonList(prioritiser)));
+    }
+
     @Test
     public void testCanSpecifyPhenixPrioritiser() {
-        Prioritiser prioritiser = priorityFactory.makeLegacyPhenixPrioritiser();
+        Prioritiser prioritiser = priorityFactory.makePhenixPrioritiser();
 
         analysisBuilder.hpoIds(hpoIds)
                 .addPhenixPrioritiser();
+
+        assertThat(analysisSteps(), equalTo(singletonList(prioritiser)));
+    }
+
+    @Test
+    public void testCanSpecifyLegacyPhenixPrioritiser() {
+        Prioritiser prioritiser = priorityFactory.makeLegacyPhenixPrioritiser();
+
+        analysisBuilder.hpoIds(hpoIds)
+                .addLegacyPhenixPrioritiser();
 
         assertThat(analysisSteps(), equalTo(singletonList(prioritiser)));
     }

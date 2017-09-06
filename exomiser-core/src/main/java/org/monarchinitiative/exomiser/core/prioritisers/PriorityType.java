@@ -30,6 +30,8 @@ public enum PriorityType {
     HIPHIVE_PRIORITY,
     //Prioritises against PPI-RandomWalk-proximity A.K.A "GeneWanderer"
     EXOMEWALKER_PRIORITY,
+    // Priotizes using human phenotypes A.K.A. "HPO Phenomizer priotizer"
+    PHENIX_PRIORITY,
     //Prioritises against human phenotypes A.K.A. "Legacy HPO Phenomizer prioritizer"
     LEGACY_PHENIX_PRIORITY,
     //Prioritises against human-mouse phenotype similarities

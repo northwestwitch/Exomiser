@@ -45,6 +45,8 @@ public interface PriorityFactory {
 
     OMIMPriority makeOmimPrioritiser();
 
+    PhenixPriority makePhenixPrioritiser();
+
     LegacyPhenixPriority makeLegacyPhenixPrioritiser();
 
     PhivePriority makePhivePrioritiser();

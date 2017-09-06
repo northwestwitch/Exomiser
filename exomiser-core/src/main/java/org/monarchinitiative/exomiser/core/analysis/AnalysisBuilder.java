@@ -229,9 +229,14 @@ public class AnalysisBuilder {
     }
 
     public AnalysisBuilder addPhenixPrioritiser() {
-        addPrioritiserStepIfHpoIdsNotEmpty(priorityFactory.makeLegacyPhenixPrioritiser());
-        return this;
-    }
+      addPrioritiserStepIfHpoIdsNotEmpty(priorityFactory.makePhenixPrioritiser());
+      return this;
+  }
+
+    public AnalysisBuilder addLegacyPhenixPrioritiser() {
+      addPrioritiserStepIfHpoIdsNotEmpty(priorityFactory.makeLegacyPhenixPrioritiser());
+      return this;
+  }
 
     public AnalysisBuilder addExomeWalkerPrioritiser(List<Integer> seedGenes) {
         if (seedGenes == null || seedGenes.isEmpty()) {

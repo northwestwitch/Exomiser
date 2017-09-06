@@ -50,15 +50,18 @@ public class PriorityFactoryImpl implements PriorityFactory {
     private final PriorityService priorityService;
     private final DataMatrix randomWalkMatrix;
     private final Path phenixDataDirectory;
+    private final Path legacyPhenixDataDirectory;
 
     // The randomWalkMatrix takes about 1min to load into RAM and isn't always required, so @Lazy is used to defer loading
     // until it is required.
     @Lazy
     @Autowired
-    public PriorityFactoryImpl(PriorityService priorityService, DataMatrix randomWalkMatrix, Path phenixDataDirectory) {
+    public PriorityFactoryImpl(PriorityService priorityService, DataMatrix randomWalkMatrix, Path phenixDataDirectory,
+                               Path legacyPhenixDataDirectory) {
         this.priorityService = priorityService;
         this.randomWalkMatrix = randomWalkMatrix;
         this.phenixDataDirectory = phenixDataDirectory;
+        this.legacyPhenixDataDirectory = legacyPhenixDataDirectory;
     }
 
     /**
@@ -80,8 +83,10 @@ public class PriorityFactoryImpl implements PriorityFactory {
         switch (priorityType) {
             case OMIM_PRIORITY:
                 return makeOmimPrioritiser();
+            case PHENIX_PRIORITY:
+              return makePhenixPrioritiser();
             case LEGACY_PHENIX_PRIORITY:
-                return makeLegacyPhenixPrioritiser();
+              return makeLegacyPhenixPrioritiser();
             case HIPHIVE_PRIORITY:
                 HiPhiveOptions hiPhiveOptions = HiPhiveOptions.builder()
                         .diseaseId(diseaseId)
@@ -116,9 +121,15 @@ public class PriorityFactoryImpl implements PriorityFactory {
     }
 
     @Override
+    public PhenixPriority makePhenixPrioritiser() {
+        boolean symmetric = false;
+        return new PhenixPriority(phenixDataDirectory.toString(), symmetric);
+    }
+
+    @Override
     public LegacyPhenixPriority makeLegacyPhenixPrioritiser() {
         boolean symmetric = false;
-        return new LegacyPhenixPriority(phenixDataDirectory.toString(), symmetric);
+        return new LegacyPhenixPriority(legacyPhenixDataDirectory.toString(), symmetric);
     }
 
     @Override

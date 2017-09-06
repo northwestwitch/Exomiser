@@ -76,6 +76,7 @@ public class LegacyPhenixPriority implements Prioritiser {
     private Map<String, List<Term>> geneId2annotations;
 
     private boolean symmetric;
+
     /**
      * Path to the directory that has the files needed to calculate the score
      * distribution.
