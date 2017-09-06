@@ -56,6 +56,12 @@
             <organization>The Jackson Laboratory for Genomic Medicine</organization>
             <organizationUrl>https://www.jax.org/</organizationUrl>
         </developer>
+        <developer>
+            <name>Manuel Holtgrewe</name>
+            <email>manuel.holtgrewe@bihealth.de</email>
+            <organization>Berlin Institute of Health</organization>
+            <organizationUrl>https://www.bihealth.org/</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
